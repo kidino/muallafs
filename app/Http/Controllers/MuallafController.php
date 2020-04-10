@@ -34,6 +34,9 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         $note->save();
 
         return redirect()->route('notelist', ['id' => $id ]);
+    }
 
+    function welcome() {
+        return view('alternate');
     }
 }

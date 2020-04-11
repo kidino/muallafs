@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 
 class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
+
+    var $jantina = [ 0 => '', 1 => 'LELAKI', 2 => 'PEREMPUAN'];
+
     function notelist($id) {
         $menu = (object) array('name' => 'admin');
         $muallaf = Muallaf::find($id);
@@ -34,6 +37,19 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         $note->save();
 
         return redirect()->route('notelist', ['id' => $id ]);
+    }
+
+    function surat($id) {
+        $muallaf = Muallaf::find($id);
+
+        if ($muallaf) {
+            $muallaf->jantina  = $this->jantina[ $muallaf->jantina ];
+        }
+
+        if ($muallaf && empty($muallaf->foto)) {
+            $muallaf->foto = '/assets/img/default-foto.gif';
+        }
+        return view('muallaf.surat', compact('muallaf'));
     }
 
     function welcome() {

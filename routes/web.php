@@ -26,4 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('/muallafs/{id}/nota', 'MuallafController@notelist')->name('notelist');
     Route::post('/muallafs/{id}/nota', 'MuallafController@savenote')->name('savenote');
+
+    Route::get('/muallafs/{id}/surat', 'MuallafController@surat')->name('surat');
+
 });

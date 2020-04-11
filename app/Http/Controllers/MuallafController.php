@@ -52,6 +52,16 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
             $muallaf->foto = '/storage/'.$muallaf->foto;
         }
 
+        if($muallaf && !empty($muallaf->tarikh_islam)) {
+            $date = \DateTime::createFromFormat('Y-m-d', $muallaf->tarikh_islam);
+            $muallaf->tarikh_islam = $date->format('j/n/Y');
+        }
+
+        if($muallaf && !empty($muallaf->tarikh_lahir)) {
+            $date = \DateTime::createFromFormat('Y-m-d', $muallaf->tarikh_lahir);
+            $muallaf->tarikh_lahir = $date->format('j/n/Y');
+        }
+
 
         return view('muallaf.surat', compact('muallaf'));
     }

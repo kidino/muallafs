@@ -7,8 +7,10 @@
     <style>
         body { margin: 0px; padding: 0px; background-color: #ccc;
             font-family: helvetica, arial, sans-serif;
+            padding-bottom: 10mm;
         }
-        body * { box-sizing: border-box; margin: 0px; padding: 0px; }
+        body * { box-sizing: border-box; margin: 0px; padding: 0px; 
+        }
         .container {
             width: 210mm; height: 297mm;
             margin: auto;
@@ -166,12 +168,55 @@
             bottom: 25mm;
         }
 
+        .print {
+            border: none;
+            height: 8mm;
+            float: right;
+            margin-top: 1mm;
+            padding: 1mm 2mm;
+            font-size: 10pt;
+            line-height: 7mm;
+            background-color: #cfc;
+            cursor: pointer;
+        }
 
+        #info {
+            width: 210mm; height: 10mm;
+            margin: auto;
+            display: block;
+        }
+
+        .back {
+            border: none;
+            height: 8mm;
+            float: left;
+            margin-top: 1mm;
+            padding: 1mm 2mm;
+            font-size: 10pt;
+            background-color: #cfc;
+            cursor: pointer;
+            text-decoration: none;
+            line-height: 7mm;
+        }
+
+
+@media print {
+    #info {
+        display: none;
+    }
+
+    body {
+        padding: 0px;
+    }
+}
     </style>
 
 </head>
 <body>
-    
+    <div id="info">
+        <a href="/admin/muallafs" class="back">&laquo; BACK</a>
+        <button class="print" onclick="window.print()">PRINT</button>
+    </div>
     <div class="container">
         <img src="/assets/img/perkim_logo.png" id="logo" alt="">
         <h1>Pertubuhan Kebajikan Islam Malaysia (PERKIM)<br>BAHAGIAN NEGERI SELANOR</h1>

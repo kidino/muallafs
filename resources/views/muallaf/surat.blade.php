@@ -179,7 +179,7 @@
         <h3>Tel : 03-5512 1450 &nbsp; &nbsp; &nbsp; Fax : 03-5512 1420</h3>
         <h4 id="title">Surat Akuan<br>Memeluk Agama Islam Sementara</h4>
 
-        <img id="photo" src="/{{$muallaf->foto}}" alt="">
+        <img id="photo" src="{{$muallaf->foto}}" alt="">
 
         <p class="form-label space-top">Bil : <span class="form-input">{{$muallaf->no_siri}}</span></p>
         <p class="form-label">Tarikh : <span class="form-input">{{date('d/m/Y')}}</span></p>

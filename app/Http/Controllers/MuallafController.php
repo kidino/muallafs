@@ -47,8 +47,12 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         }
 
         if ($muallaf && empty($muallaf->foto)) {
-            $muallaf->foto = 'assets/img/default-foto.gif';
+            $muallaf->foto = '/assets/img/default-foto.gif';
+        } else {
+            $muallaf->foto = '/storange/'.$muallaf->foto;
         }
+
+
         return view('muallaf.surat', compact('muallaf'));
     }
 

@@ -219,7 +219,7 @@
     </div>
     <div class="container">
         <img src="/assets/img/perkim_logo.png" id="logo" alt="">
-        <h1>Pertubuhan Kebajikan Islam Malaysia (PERKIM)<br>BAHAGIAN NEGERI SELANOR</h1>
+        <h1>Pertubuhan Kebajikan Islam Malaysia (PERKIM)<br>BAHAGIAN NEGERI SELANGOR</h1>
         <h3>Masjid Sultan Salahuddin Abdul Aziz Shah, Persiaran Masjid, 40000 Shah Alam.</h3>
         <h3>Tel : 03-5512 1450 &nbsp; &nbsp; &nbsp; Fax : 03-5512 1420</h3>
         <h4 id="title">Surat Akuan<br>Memeluk Agama Islam Sementara</h4>
@@ -231,7 +231,12 @@
 
         <p class="form-label-1 space-top-1">Nama Asal <span class="form-input-1">{{$muallaf->nama_asal}}</span></p>
         <p class="form-label-1">Nama Islam <span class="form-input-1">{{$muallaf->nama_islam}}</span></p>
-        <p class="form-label-1">No. KP/Passport <span class="form-input-1">{{$muallaf->kp_passport}}</span></p>
+        <p class="form-label-1">No. KP/Passport <span class="form-input-1">
+            {{$muallaf->kp_passport}}
+        @if(isset($muallaf->country->country_name) && ($muallaf->country->country_name != 'Malaysia') && ($muallaf->country->country_name != ''))
+        ({{$muallaf->country->country_name}})
+        @endif
+        </span></p>
         <p class="form-label-2">Jantina <span class="form-input-2">{{$muallaf->jantina}}</span></p>
 
         <p class="form-label-3">Bangsa <span class="form-input-3">{{$muallaf->bangsa}}</span></p>
@@ -258,7 +263,7 @@
         <p id="perhatian"><strong>PERHATIAN</strong></p>
         <ol id="notice">
             <li>Surat akuan ini adalah untuk sementara sahaja sehingga kad akuan memeluk agama Islam dikeluarkan oleh Jabatan Agama Islam Negeri.</li>
-            <li>Sebarang pertanyaan sila hubung PERKIM Bahagian Negeri Selangor mmelalui nombor telefon: 03-5512 1450 atau fax: 03-5512 1420.</li>
+            <li>Sebarang pertanyaan sila hubung PERKIM Bahagian Negeri Selangor melalui nombor telefon: 03-5512 1450 atau fax: 03-5512 1420.</li>
         </ol>
 
 

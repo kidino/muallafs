@@ -23,7 +23,7 @@
             position: absolute;
             width: 35mm;
             height: auto;
-            right: 20mm; top: 72mm;
+            right: 20mm; top: 79mm;
             padding: 1mm; border: 0.1mm solid #000;
         }
 
@@ -47,8 +47,8 @@
             text-transform: uppercase;
         }
 
-        #logo { display: block; width: 25mm; height: auto; 
-        margin: auto; margin-bottom: 5mm; }
+        #logo { display: block; width: 80mm; height: auto; 
+        margin: auto; margin-bottom: 1mm; }
 
         .form-label, .form-label-1, .form-label-2, .form-label-3, .form-label-4 {
             font-weight: bold; font-size: 11pt; 
@@ -140,7 +140,7 @@
 
         #perhatian {
             margin-left: 20mm;
-            margin-top: 20mm; margin-bottom: 3mm;
+            margin-top: 15mm; margin-bottom: 3mm;
         }
 
         ol#notice {
@@ -218,7 +218,7 @@
         <button class="print" onclick="window.print()">PRINT</button>
     </div>
     <div class="container">
-        <img src="/assets/img/perkim_logo.png" id="logo" alt="">
+        <img src="/assets/img/perkim_logo2.png" id="logo" alt="">
         <h1>Pertubuhan Kebajikan Islam Malaysia (PERKIM)<br>BAHAGIAN NEGERI SELANGOR</h1>
         <h3>Masjid Sultan Salahuddin Abdul Aziz Shah, Persiaran Masjid, 40000 Shah Alam.</h3>
         <h3>Tel : 03-5512 1450 &nbsp; &nbsp; &nbsp; Fax : 03-5512 1420</h3>

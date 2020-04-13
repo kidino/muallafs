@@ -239,7 +239,7 @@
         </span></p>
         <p class="form-label-2">Jantina <span class="form-input-2">{{$muallaf->jantina}}</span></p>
 
-        <p class="form-label-3">Bangsa <span class="form-input-3">{{$muallaf->bangsa}}</span></p>
+        <p class="form-label-3">Bangsa <span class="form-input-3">{{$muallaf->kaum}}</span></p>
 
         <p class="form-label-2">Tarikh Lahir <span class="form-input-2">{{$muallaf->tarikh_lahir}}</span></p>
 

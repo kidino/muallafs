@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use App\Muallaf;
+use App\Kaum;
 use App\Note;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,13 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
 
         if (!$muallaf->jantina) {
             $muallaf->jantina = 0;
+        }
+
+        if ($muallaf->kaum) {
+            $kaum = App::find($muallaf->kaum);
+            $muallaf->kaum = $kaum;
+        } else {
+            $muallaf->kaum = '';
         }
 
         if ($muallaf) {

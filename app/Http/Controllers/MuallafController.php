@@ -42,6 +42,10 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
     function surat($id) {
         $muallaf = Muallaf::find($id);
 
+        if (!$muallaf->jantina) {
+            $muallaf->jantina = 0;
+        }
+
         if ($muallaf) {
             $muallaf->jantina  = $this->jantina[ $muallaf->jantina ];
         }

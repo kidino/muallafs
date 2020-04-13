@@ -48,7 +48,7 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         }
 
         if ($muallaf->kaum) {
-            $kaum = App::find($muallaf->kaum);
+            $kaum = Kaum::find($muallaf->kaum);
             $muallaf->kaum = $kaum;
         } else {
             $muallaf->kaum = '';

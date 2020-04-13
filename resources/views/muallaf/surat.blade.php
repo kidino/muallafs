@@ -227,7 +227,7 @@
         <img id="photo" src="{{$muallaf->foto}}" alt="">
 
         <p class="form-label space-top">Bil : <span class="form-input">{{$muallaf->no_siri}}</span></p>
-        <p class="form-label">Tarikh : <span class="form-input">{{date('j/n/Y')}}</span></p>
+        <p class="form-label">Tarikh : <span class="form-input">{{date('j/n/Y', strtotime( $muallaf->created_at ))}}</span></p>
 
         <p class="form-label-1 space-top-1">Nama Asal <span class="form-input-1">{{$muallaf->nama_asal}}</span></p>
         <p class="form-label-1">Nama Islam <span class="form-input-1">{{$muallaf->nama_islam}}</span></p>

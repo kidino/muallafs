@@ -26,7 +26,7 @@
             <th colspan="2">{!! str_replace(' ', '<br>', $km->name ) !!}</th>
             @endforeach
             <th colspan="2">JUMLAH</th>
-            <th rowspan="2">JUMLAH BESAR</th>
+            <th rowspan="2">JUMLAH<br>BESAR</th>
         </tr>
         <tr>
             @foreach ($kaum as $km)
@@ -55,19 +55,19 @@
         <tr>
             <th rowspan="2">JUMLAH</th>
             @foreach ($kaum as $k => $km)
-           <td>{{$data['JUMLAH'][$km->name]['L']}}</td>
-           <td>{{$data['JUMLAH'][$km->name]['P']}}</td> 
+           <th>{{$data['JUMLAH'][$km->name]['L']}}</th>
+           <th>{{$data['JUMLAH'][$km->name]['P']}}</th> 
             @endforeach
-           <td>{{$data['JUMLAH']['JUMLAH']['L']}}</td>
-           <td>{{$data['JUMLAH']['JUMLAH']['P']}}</td> 
-           <td>{{$data['JUMLAH']['JUMLAH']['ALL']}}</td> 
+           <th>{{$data['JUMLAH']['JUMLAH']['L']}}</th>
+           <th>{{$data['JUMLAH']['JUMLAH']['P']}}</th> 
+           <th>{{$data['JUMLAH']['JUMLAH']['ALL']}}</th> 
         </tr>
         <tr>
             @foreach ($kaum as $k => $km)
-           <td colspan="2">{{$data['JUMLAH'][$km->name]['ALL']}}</td>
+           <th colspan="2">{{$data['JUMLAH'][$km->name]['ALL']}}</th>
             @endforeach
-           <td colspan="2">{{$data['JUMLAH']['JUMLAH']['ALL']}}</td>
-           <td>{{$data['JUMLAH']['JUMLAH']['ALL']}}</td> 
+           <th colspan="2">{{$data['JUMLAH']['JUMLAH']['ALL']}}</th>
+           <th>{{$data['JUMLAH']['JUMLAH']['ALL']}}</th> 
         </tr>
     </thead>
 </table>

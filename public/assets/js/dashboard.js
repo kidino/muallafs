@@ -74,7 +74,7 @@ var race_chart = {
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-            position: 'top',
+            position: 'right',
         },
         title: {
             display: true,
@@ -131,6 +131,11 @@ window.onload = function() {
             .then(json => {
                 race_chart.data.datasets[0].data = json.data;
                 race_chart.data.labels = json.labels;
+
+                for (var i in json.labels) {
+                    race_chart.data.datasets[0].backgroundColor.push(dynamicColors());
+                }
+
                 window.myDoughnut = new Chart(ctx3, race_chart);
             });
 

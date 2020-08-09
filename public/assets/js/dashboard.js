@@ -36,9 +36,9 @@ window.onload = function() {
                 window.myBar = new Chart(ctx, {
                     type: 'bar',
                     data: barChartData,
-                    maintainAspectRatio: false,
                     options: {
                         responsive: true,
+                        maintainAspectRatio: false,
                         legend: {
                             position: 'top',
                         },

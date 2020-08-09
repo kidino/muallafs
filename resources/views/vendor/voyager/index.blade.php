@@ -10,7 +10,7 @@
             <div class="col-xs-12">
                 <div class="panel widget">
                     <div class="widget-content">
-                        <div class="chart-container" style="position: relative; height: 40vh; width: 80vw; padding-bottom: 40px; margin: auto;">
+                        <div class="chart-container" style="position: relative; height: 40vh; width: 80vw; margin: auto;">
                             <canvas id="chart_30_days"></canvas>
                         </div>
                     </div>
@@ -35,8 +35,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 @stop

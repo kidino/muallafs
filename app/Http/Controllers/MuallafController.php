@@ -79,7 +79,7 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
     function annual_report($year = null) {
         if ($year == null) $year = date('Y');
 
-        $year_mon = ['JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'ME', 'JUN', 'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER' ,'NOVEMBER','DISEMBER' ];
+        $year_mon = ['JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'MEI', 'JUN', 'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER' ,'NOVEMBER','DISEMBER' ];
         $kaum = Kaum::all();
         $data = [];
         foreach($year_mon as $km => $ym){
@@ -110,8 +110,29 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
                         ->groupBy('YM', 'kaum_name', 'jant')
                         ->get();
 
+        $done_undefined = false;
         foreach($rpdata as $rp) {
-            $data[$rp->YM][$rp->kaum_name][$rp->jant] = $rp->total;
+
+            if ($rp->kaum_name == null) {
+                if ( $done_undefined == false ){
+                    foreach($year_mon as $km => $ym){
+                        $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ]['Undefined']['L'] = 0;
+                        $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ]['Undefined']['P'] = 0;
+                        $data['JUMLAH']['Undefined']['L'] = 0;
+                        $data['JUMLAH']['Undefined']['P'] = 0;
+                        $data['JUMLAH']['Undefined']['ALL'] = 0;
+                    }
+
+                    $kaum->push( (object) [ 'name' => 'Undefined' ] );
+
+                    $done_undefined = true;
+                }
+                $data[$rp->YM]['Undefined'][$rp->jant] = $rp->total;
+            } else {
+                $data[$rp->YM][$rp->kaum_name][$rp->jant] = $rp->total;
+            }
+
+
         }
         
         foreach($data as $k => $dt) {

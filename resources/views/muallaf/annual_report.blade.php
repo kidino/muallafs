@@ -45,6 +45,7 @@
            <td>{{$data[$ym][$kk]['L']}}</td>
            <td>{{$data[$ym][$kk]['P']}}</td> 
             @endforeach
+           <td>{{$data[$ym]['JUMLAH']['ALL']}}</td> 
        </tr>
     @endforeach
     </tbody>    

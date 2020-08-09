@@ -47,7 +47,7 @@ var gender_chart = {
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-            position: 'top',
+            position: 'right',
         },
         title: {
             display: true,

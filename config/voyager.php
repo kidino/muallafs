@@ -144,7 +144,6 @@ return [
         ],
 
         'widgets' => [
-
         ],
 
     ],
@@ -192,6 +191,8 @@ return [
 
     'additional_js' => [
         //'js/custom.js',
+        'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js',
+        'assets/js/dashboard.js',
     ],
 
     'googlemaps' => [

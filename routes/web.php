@@ -21,12 +21,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MuallafController@welcome')->name('welcome');
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    Route::get('/muallafs/{id}/nota', 'MuallafController@notelist')->name('notelist');
-    Route::post('/muallafs/{id}/nota', 'MuallafController@savenote')->name('savenote');
 
-    Route::get('/muallafs/{id}/surat', 'MuallafController@surat')->name('surat');
+    Route::group(['middleware' => 'admin.user'], function () {
+        Route::get('/muallafs/{id}/nota', 'MuallafController@notelist')->name('notelist');
+        Route::post('/muallafs/{id}/nota', 'MuallafController@savenote')->name('savenote');
+        Route::get('/muallafs/{id}/surat', 'MuallafController@surat')->name('surat');
 
+
+        Route::get('/muallafs/api/days_month_count', 'MuallafController@days_month_count')->name('api_days_month_count');
+    });
 });

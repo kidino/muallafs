@@ -13,7 +13,6 @@ use App\Kaum;
 use App\Note;
 use Illuminate\Support\Facades\Auth;
 
-
 class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
 
@@ -74,11 +73,49 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
             $muallaf->tarikh_lahir = $date->format('j/n/Y');
         }
 
-
         return view('muallaf.surat', compact('muallaf'));
     }
 
     function welcome() {
         return view('alternate');
     }
+
+    /* ------------------------ */
+
+    function days_month_count() {
+
+        $date_start = date('Y-m-d', strtotime('-30 days'));
+        $date_end = date('Y-m-d');
+
+        $period = new \DatePeriod(
+            new \DateTime( $date_start ),
+            new \DateInterval('P1D'),
+            new \DateTime( $date_end )
+        );
+
+        $days_30 = [];
+        $labels = [];
+        $data = [];
+        foreach ($period as $key => $value) {
+            $days_30[ $value->format('Y-m-d') ] = 0;
+            $labels[] = $value->format('Y-m-d');
+        }
+
+        $days_count = \DB::table('muallafs')
+                        ->select(\DB::raw('tarikh_islam, COUNT(*) as total'))
+                        ->whereBetween('tarikh_islam', [$date_start, $date_end])
+                        ->groupBy('tarikh_islam')
+                        ->get();
+
+        foreach( $days_count as $day_count) {
+            $days_30[ $day_count->tarikh_islam ] = $day_count->total;
+        }  
+
+        foreach($days_30 as $k => $v) {
+            $data[] = $v;
+        }
+
+        return response()->json([ 'labels' => $labels, 'data' => $data ]);
+    }
+
 }

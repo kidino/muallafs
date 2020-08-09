@@ -118,18 +118,15 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
             foreach($dt as $v => $dv) {
                 $data[$k]['JUMLAH']['L'] += $dv['L'];
                 $data[$k]['JUMLAH']['P'] += $dv['P'];
-                $data[$k]['JUMLAH']['ALL'] += $dv['L'];
-                $data[$k]['JUMLAH']['ALL'] += $dv['P'];
+                $data[$k]['JUMLAH']['ALL'] += ($dv['L'] + $dv['P']);
 
                 $data['JUMLAH'][$v]['L'] += $dv['L'];
                 $data['JUMLAH'][$v]['P'] += $dv['P'];
-                $data['JUMLAH'][$v]['ALL'] += $dv['L'];
-                $data['JUMLAH'][$v]['ALL'] += $dv['P'];
+                $data['JUMLAH'][$v]['ALL'] += ($dv['L'] + $dv['P']);
 
                 $data['JUMLAH']['JUMLAH']['L'] += $dv['L'];
                 $data['JUMLAH']['JUMLAH']['P'] += $dv['P'];
-                $data['JUMLAH']['JUMLAH']['ALL'] += $dv['L'];
-                $data['JUMLAH']['JUMLAH']['ALL'] += $dv['P'];
+                $data['JUMLAH']['JUMLAH']['ALL'] += ($dv['L'] + $dv['P']);
             }
         }
 

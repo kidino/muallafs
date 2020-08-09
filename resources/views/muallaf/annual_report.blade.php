@@ -51,7 +51,7 @@
        </tr>
     @endforeach
     </tbody>   
-    <thead>
+    <thead style="border-top: 1px solid #f0f0f0;">
         <tr>
             <th rowspan="2">JUMLAH</th>
             @foreach ($kaum as $k => $km)

@@ -28,7 +28,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/muallafs/{id}/nota', 'MuallafController@notelist')->name('notelist');
         Route::post('/muallafs/{id}/nota', 'MuallafController@savenote')->name('savenote');
         Route::get('/muallafs/{id}/surat', 'MuallafController@surat')->name('surat');
-
+        Route::get('/muallafs/annual/{year}', 'MuallafController@annual_report')->name('annual_report_year');
+        Route::get('/muallafs/annual', 'MuallafController@annual_report')->name('annual_report');
 
         Route::get('/muallafs/api/days_month_count', 'MuallafController@days_month_count')->name('api_days_month_count');
         Route::get('/muallafs/api/month_gender', 'MuallafController@conversion_by_gender_30')->name('api_by_gender_30');

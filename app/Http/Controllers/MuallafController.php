@@ -76,11 +76,40 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         return view('muallaf.surat', compact('muallaf'));
     }
 
+    function annual_report($year = '') {
+        if ($year == '') $year = date('Y');
+
+        $year_mon = ['JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'JUN', 'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER' ,'NOVEMBER','DISEMBER' ];
+        $kaum = Kaum::all();
+        $data = [];
+        foreach($year_mon as $km => $ym){
+            foreach($kaum as $k) {
+                $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ][$k->name]['L'] = 0;
+                $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ][$k->name]['P'] = 0;
+            }
+        }
+
+        $rpdata = \DB::table('muallafs')
+                        ->leftJoin('kaum', 'muallafs.kaum', '=', 'kaum.id')
+                        ->select(\DB::raw('DATE_FORMAT(tarikh_islam, \'%Y-%m\') AS YM,
+                        `kaum`.`name` as kaum_name, 
+                        IF(`muallafs`.jantina = 1, "L", "P") AS jant,
+                        COUNT(*) as total '))
+                        ->whereBetween('tarikh_islam', [$year.'-01-01', ($year+1).'-01-01'])
+                        ->groupBy('YM', 'kaum_name', 'jant')
+                        ->get();
+
+        foreach($rpdata as $rp) {
+            $data[$rp->YM][$rp->kaum_name][$rp->jant] = $rp->total;
+        }
+        return response()->json($data);
+    }
+
     function welcome() {
         return view('alternate');
     }
 
-    /* ------------------------ */
+    /* ----------- JSON API ------------- */
 
     function days_month_count() {
 

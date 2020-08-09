@@ -18,7 +18,7 @@
                     <div class="panel-body">
 <h4>PERKIM SELANGOR</h4>
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th rowspan="2">&nbsp;</th>

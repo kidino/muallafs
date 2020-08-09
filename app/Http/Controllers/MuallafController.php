@@ -147,8 +147,8 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         $data = [];
 
         $race = \DB::table('muallafs')
-                        ->join('kaum', 'muallafs.kaum', '=', 'kaum.id')
-                        ->select(\DB::raw('kaum.name, COUNT(*) as total'))
+                        ->leftJoin('kaum', 'muallafs.kaum', '=', 'kaum.id')
+                        ->select(\DB::raw('`kaum`.`name`, COUNT(*) as total'))
                         ->whereBetween('muallafs.tarikh_islam', [$date_start, $date_end])
                         ->groupBy('muallafs.kaum')
                         ->get();

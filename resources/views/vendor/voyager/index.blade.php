@@ -16,7 +16,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="clearfix container-fluid row">
             <div class="col-sm-6">
                 <div class="panel widget">
                     <div class="widget-content">

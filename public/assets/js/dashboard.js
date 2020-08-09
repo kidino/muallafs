@@ -8,6 +8,13 @@ window.chartColors = {
     grey: 'rgb(201, 203, 207)'
 };
 
+var dynamicColors = function() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}
+
 var color = Chart.helpers.color;
 var barChartData = {
     labels: [],
@@ -18,8 +25,68 @@ var barChartData = {
         borderWidth: 1,
         data: []
     }]
-
 };
+
+var gender_chart = {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [],
+            backgroundColor: [
+                window.chartColors.orange,
+                window.chartColors.green,
+            ],
+            label: 'Jantina'
+        }],
+        labels: [
+            'Lelaki',
+            'Perempuan',
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Pecahan Jantina 30 Hari'
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    }
+};
+
+var race_chart = {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [],
+            backgroundColor: [],
+            label: 'Kaum'
+        }],
+        labels: []
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Pecahan Kaum 30 Hari'
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    }
+};
+
 window.onload = function() {
 
     var myEle = document.getElementById("chart_30_days");
@@ -48,8 +115,27 @@ window.onload = function() {
                         }
                     }
                 });
-            })
-    } // if 
+            });
+
+        var ctx2 = document.getElementById('chart_gender').getContext('2d');
+        fetch('/admin/muallafs/api/month_gender')
+            .then(response => response.json())
+            .then(json => {
+                gender_chart.data.datasets[0].data = json.data;
+                window.myDoughnut = new Chart(ctx2, gender_chart);
+            });
+
+        var ctx3 = document.getElementById('chart_race').getContext('2d');
+        fetch('/admin/muallafs/api/month_race')
+            .then(response => response.json())
+            .then(json => {
+                race_chart.data.datasets[0].data = json.data;
+                race_chart.data.labels = json.labels;
+                window.myDoughnut = new Chart(ctx3, race_chart);
+            });
+
+
+    } // -- end if 
 
 
 };

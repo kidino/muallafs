@@ -31,5 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
         Route::get('/muallafs/api/days_month_count', 'MuallafController@days_month_count')->name('api_days_month_count');
+        Route::get('/muallafs/api/month_gender', 'MuallafController@conversion_by_gender_30')->name('api_by_gender_30');
+        Route::get('/muallafs/api/month_race', 'MuallafController@conversion_by_race_30')->name('api_by_race_30');
     });
 });

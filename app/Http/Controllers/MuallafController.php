@@ -118,4 +118,48 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         return response()->json([ 'labels' => $labels, 'data' => $data ]);
     }
 
+    function conversion_by_gender_30() {
+        $date_start = date('Y-m-d', strtotime('-30 days'));
+        $date_end = date('Y-m-d');
+
+        $labels = ['LELAKI', 'PEREMPUAN'];
+
+        $genders = \DB::table('muallafs')
+                        ->select(\DB::raw('jantina, COUNT(*) as total'))
+                        ->whereBetween('tarikh_islam', [$date_start, $date_end])
+                        ->groupBy('jantina')
+                        ->orderBy('jantina','asc')
+                        ->get();
+
+        $data = [];
+        foreach( $genders as $gend) {
+            $data[] = $gend->total;
+        }  
+
+        return response()->json([ 'labels' => $labels, 'data' => $data ]);
+    }
+
+    function conversion_by_race_30() {
+        $date_start = date('Y-m-d', strtotime('-30 days'));
+        $date_end = date('Y-m-d');
+
+        $labels = [];
+        $data = [];
+
+        $race = \DB::table('muallafs')
+                        ->join('kaum', 'muallafs.kaum', '=', 'kaum.id')
+                        ->select(\DB::raw('kaum.name, COUNT(*) as total'))
+                        ->whereBetween('muallafs.tarikh_islam', [$date_start, $date_end])
+                        ->groupBy('muallafs.kaum')
+                        ->get();
+
+        $data = [];
+        foreach( $race as $rc) {
+            $labels[] = $rc->name;
+            $data[] = $rc->total;
+        }  
+
+        return response()->json([ 'labels' => $labels, 'data' => $data ]);
+    }
+
 }

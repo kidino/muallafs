@@ -21,8 +21,9 @@
             <div class="col-sm-6">
                 <div class="panel widget">
                     <div class="widget-content">
-
-                        last 30 days conversion by gender
+                        <div class="chart-container" style="position: relative; height: 40vh; width: 40vw; margin: auto;">
+                            <canvas id="chart_gender"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,7 +32,9 @@
                 <div class="panel widget">
                     <div class="widget-content">
 
-                        last 30 days conversion by bangsa
+                        <div class="chart-container" style="position: relative; height: 40vh; width: 40vw; margin: auto;">
+                            <canvas id="chart_race"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

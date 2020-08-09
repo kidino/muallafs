@@ -86,6 +86,9 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
             foreach($kaum as $k) {
                 $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ][$k->name]['L'] = 0;
                 $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ][$k->name]['P'] = 0;
+                $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ]['JUMLAH']['L'] = 0;
+                $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ]['JUMLAH']['P'] = 0;
+                $data[$year.'-'. str_pad($km+1, 2, '0', STR_PAD_LEFT) ]['JUMLAH']['ALL'] = 0;
             }
         }
 
@@ -102,7 +105,15 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         foreach($rpdata as $rp) {
             $data[$rp->YM][$rp->kaum_name][$rp->jant] = $rp->total;
         }
-        //return response()->json($data);
+        
+        foreach($data as $k => $dt) {
+            foreach($dt as $v => $dv) {
+                $data[$k]['JUMLAH']['L'] += $dv['L'];
+                $data[$k]['JUMLAH']['P'] += $dv['P'];
+                $data[$k]['JUMLAH']['ALL'] += $dv['L'];;
+                $data[$k]['JUMLAH']['ALL'] += $dv['P'];;
+            }
+        }
 
         return Voyager::view('muallaf.annual_report', compact('data', 'year','kaum'));
 

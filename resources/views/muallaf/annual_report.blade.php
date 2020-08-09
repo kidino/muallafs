@@ -23,14 +23,18 @@
         <tr>
             <th rowspan="2">&nbsp;</th>
             @foreach ($kaum as $km)
-            <th colspan="2">{{$km->name}}</th>
+            <th colspan="2">{!! str_replace(' ', '<br>', $km->name ) !!}</th>
             @endforeach
+            <th colspan="2">JUMLAH</th>
+            <th rowspan="2">JUMLAH BESAR</th>
         </tr>
         <tr>
             @foreach ($kaum as $km)
             <th>L</th>
             <th>P</th>
             @endforeach
+            <th>L</th>
+            <th>P</th>
         </tr>
     </thead>
     <tbody>

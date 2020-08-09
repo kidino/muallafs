@@ -76,10 +76,10 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         return view('muallaf.surat', compact('muallaf'));
     }
 
-    function annual_report($year = '') {
-        if ($year == '') $year = date('Y');
+    function annual_report($year = null) {
+        if ($year == null) $year = date('Y');
 
-        $year_mon = ['JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'JUN', 'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER' ,'NOVEMBER','DISEMBER' ];
+        $year_mon = ['JANUARI', 'FEBRUARI', 'MAC', 'APRIL', 'ME', 'JUN', 'JULAI', 'OGOS', 'SEPTEMBER', 'OKTOBER' ,'NOVEMBER','DISEMBER' ];
         $kaum = Kaum::all();
         $data = [];
         foreach($year_mon as $km => $ym){
@@ -102,7 +102,10 @@ class MuallafController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         foreach($rpdata as $rp) {
             $data[$rp->YM][$rp->kaum_name][$rp->jant] = $rp->total;
         }
-        return response()->json($data);
+        //return response()->json($data);
+
+        return Voyager::view('muallaf.annual_report', compact('data', 'year','kaum'));
+
     }
 
     function welcome() {

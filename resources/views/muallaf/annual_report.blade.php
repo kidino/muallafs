@@ -38,19 +38,38 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($data as $ym => $dt)
+    @foreach ($year_mon as $k => $v)
        <tr>
-           <td>{{$ym}}</td>
+           <td>{{$v}}</td>
             @foreach ($kaum as $kk)
-           <td>{{$data[$ym][$kk->name]['L']}}</td>
-           <td>{{$data[$ym][$kk->name]['P']}}</td> 
+           <td>{{$data[ $year.'-'. str_pad($k+1, 2, '0', STR_PAD_LEFT) ][$kk->name]['L']}}</td>
+           <td>{{$data[ $year.'-'. str_pad($k+1, 2, '0', STR_PAD_LEFT) ][$kk->name]['P']}}</td> 
             @endforeach
-           <td>{{$data[$ym]['JUMLAH']['L']}}</td>
-           <td>{{$data[$ym]['JUMLAH']['P']}}</td> 
-           <td>{{$data[$ym]['JUMLAH']['ALL']}}</td> 
+           <td>{{$data[ $year.'-'. str_pad($k+1, 2, '0', STR_PAD_LEFT) ]['JUMLAH']['L']}}</td>
+           <td>{{$data[ $year.'-'. str_pad($k+1, 2, '0', STR_PAD_LEFT) ]['JUMLAH']['P']}}</td> 
+           <td>{{$data[ $year.'-'. str_pad($k+1, 2, '0', STR_PAD_LEFT) ]['JUMLAH']['ALL']}}</td> 
        </tr>
     @endforeach
-    </tbody>    
+    </tbody>   
+    <thead>
+        <tr>
+            <th rowspan="2">JUMLAH</th>
+            @foreach ($kaum as $k => $km)
+           <td>{{$data['JUMLAH'][$km->name]['L']}}</td>
+           <td>{{$data['JUMLAH'][$km->name]['P']}}</td> 
+            @endforeach
+           <td>{{$data['JUMLAH']['JUMLAH']['L']}}</td>
+           <td>{{$data['JUMLAH']['JUMLAH']['P']}}</td> 
+           <td>{{$data['JUMLAH']['JUMLAH']['ALL']}}</td> 
+        </tr>
+        <tr>
+            @foreach ($kaum as $k => $km)
+           <td colspan="2">{{$data['JUMLAH'][$km->name]['ALL']}}</td>
+            @endforeach
+           <td colspan="2">{{$data['JUMLAH']['JUMLAH']['ALL']}}</td>
+           <td>{{$data['JUMLAH']['JUMLAH']['ALL']}}</td> 
+        </tr>
+    </thead>
 </table>
                     </div>
                 </div>

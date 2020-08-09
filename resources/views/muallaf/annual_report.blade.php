@@ -41,10 +41,12 @@
     @foreach ($data as $ym => $dt)
        <tr>
            <td>{{$ym}}</td>
-            @foreach ($dt as $kk => $dv)
-           <td>{{$data[$ym][$kk]['L']}}</td>
-           <td>{{$data[$ym][$kk]['P']}}</td> 
+            @foreach ($kaum as $kk)
+           <td>{{$data[$ym][$kk->name]['L']}}</td>
+           <td>{{$data[$ym][$kk->name]['P']}}</td> 
             @endforeach
+           <td>{{$data[$ym]['JUMLAH']['L']}}</td>
+           <td>{{$data[$ym]['JUMLAH']['P']}}</td> 
            <td>{{$data[$ym]['JUMLAH']['ALL']}}</td> 
        </tr>
     @endforeach
